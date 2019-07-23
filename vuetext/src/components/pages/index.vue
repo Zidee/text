@@ -13,6 +13,11 @@
       @confirm="handleConfirm"
       :startDate="startDate"
     ></mt-datetime-picker>
+
+    <div class="applyInput cb mt3">
+       <textarea placeholder="请输入" maxlength="500" @input="descInput" v-model="desc" />
+       <span class="numberV">{{txtVal}}/500</span>
+    </div>
   </div>
 </template>
 
@@ -23,7 +28,9 @@ export default {
     return {
     pickerValue: "",
     chickTime:"",
-	  startDate: new Date(),
+    startDate: new Date(),
+    desc: "",
+    txtVal: 0
     };
   },
   methods: {
@@ -36,8 +43,10 @@ export default {
 		}else{
       this.chickTime = formatDate(this.pickerValue);
     }
-    
-	}
+  },
+  descInput(){
+    this.txtVal = this.desc.length;
+  }
   },
 };
 </script>
